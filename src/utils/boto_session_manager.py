@@ -17,14 +17,11 @@ class BotoSessionManager:
         return cls._session
 
     @classmethod
-    async def get_client(cls, service_name: str) -> aioboto3.Session.client:
+    async def get_s3_client(cls):
         session = cls.get_session()
-        return session.client(service_name)
+        return session.client('s3')
 
     @classmethod
-    async def get_s3_client(cls) -> aioboto3.Session.client:
-        return cls.get_client('s3')
-
-    @classmethod
-    async def get_dynamodb_client(cls) -> aioboto3.Session.client:
-        return cls.get_client('dynamodb')
+    async def get_dynamodb_client(cls):
+        session = cls.get_session()
+        return session.client('dynamodb')
