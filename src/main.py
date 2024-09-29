@@ -5,8 +5,9 @@ from src.routers import weather
 app = FastAPI()
 app.include_router(weather.router)
 
+
 @app.get("/")
-async def root():
+async def root() -> dict:
     return {"message": "Welcome to the Weather API!"}
 
 

@@ -1,6 +1,7 @@
 import os
-import aioboto3
 from typing import Optional
+import aioboto3
+
 
 class BotoSessionManager:
     _session: Optional[aioboto3.Session] = None
@@ -16,11 +17,14 @@ class BotoSessionManager:
         return cls._session
 
     @classmethod
-    async def get_s3_client(cls):
+    async def get_client(cls, service_name: str) -> aioboto3.Session.client:
         session = cls.get_session()
-        return session.client('s3')
+        return session.client(service_name)
 
     @classmethod
-    async def get_dynamodb_client(cls):
-        session = cls.get_session()
-        return session.client('dynamodb')
+    async def get_s3_client(cls) -> aioboto3.Session.client:
+        return cls.get_client('s3')
+
+    @classmethod
+    async def get_dynamodb_client(cls) -> aioboto3.Session.client:
+        return cls.get_client('dynamodb')
