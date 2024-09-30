@@ -2,6 +2,8 @@
 
 Simple weather API written in Python using FastAPI and OpenWeatherMap API. All requests cached on AWS with S3 and DynamoDB.
 
+_Created for a job interview task._
+
 ## Deployment
 
 ### Step 1: Create `.env` based on `.env.example`
