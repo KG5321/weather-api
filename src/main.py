@@ -1,8 +1,10 @@
 import uvicorn
 from fastapi import FastAPI
 from src.routers import weather
+from src.utils.logging_middleware import LoggingMiddleware
 
 app = FastAPI()
+app.add_middleware(LoggingMiddleware)
 app.include_router(weather.router)
 
 
